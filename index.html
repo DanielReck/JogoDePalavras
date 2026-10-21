@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#7257ff" />
+  <title>Aura Palavra — desafio diário</title>
+  <meta name="description" content="Descubra a palavra do dia em até 6 tentativas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-button" id="homeBtn" aria-label="Voltar para o início" title="Início">⌂</button>
+      <a class="brand" href="#home" aria-label="Aura Palavra, página inicial">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <span>Aura Palavra</span>
+      </a>
+      <button class="icon-button" id="statsBtn" aria-label="Abrir estatísticas" title="Estatísticas">▥</button>
+    </header>
+
+    <main>
+      <section id="homeView" class="view view--active" aria-labelledby="homeTitle">
+        <div class="hero-card">
+          <span class="eyebrow">DESAFIO DE HOJE</span>
+          <h1 id="homeTitle">5 letras. 6 chances.<br><span>Quanto de aura você tem?</span></h1>
+          <p class="hero-copy">Descubra a palavra do dia. Verde acerta lugar, amarelo indica outra posição e cinza elimina a letra.</p>
+
+          <div class="theme-pill" aria-label="Tema do dia">
+            <span aria-hidden="true">✦</span>
+            <span>Tema: <strong id="homeCategory">—</strong></span>
+          </div>
+
+          <button class="primary-button" id="startBtn">Jogar agora <span aria-hidden="true">→</span></button>
+
+          <div class="mini-stats" aria-label="Resumo das estatísticas">
+            <div><strong id="homeStreak">0</strong><span>streak</span></div>
+            <div><strong id="homeWins">0</strong><span>vitórias</span></div>
+            <div><strong id="homeRate">0%</strong><span>acertos</span></div>
+          </div>
+        </div>
+
+        <div class="how-card">
+          <h2>Como jogar</h2>
+          <div class="legend-row"><span class="demo-tile tile--correct">A<small>✓</small></span><span>letra certa, lugar certo</span></div>
+          <div class="legend-row"><span class="demo-tile tile--present">U<small>•</small></span><span>letra certa, outro lugar</span></div>
+          <div class="legend-row"><span class="demo-tile tile--absent">R<small>×</small></span><span>essa letra não aparece</span></div>
+        </div>
+      </section>
+
+      <section id="gameView" class="view" aria-labelledby="gameTitle">
+        <div class="game-heading">
+          <div>
+            <span class="eyebrow">TEMA DO DIA</span>
+            <h1 id="gameTitle"> <span id="gameCategory">—</span></h1>
+          </div>
+          <div class="attempt-badge"><strong id="attemptCount">1</strong><span>/ 6</span></div>
+        </div>
+
+        <div class="message" id="message" aria-live="polite"></div>
+        <div class="board" id="board" aria-label="Grade de tentativas"></div>
+
+        <div class="keyboard" id="keyboard" aria-label="Teclado virtual">
+          <div class="key-row" data-row="QWERTYUIOP"></div>
+          <div class="key-row" data-row="ASDFGHJKL"></div>
+          <div class="key-row key-row--bottom" data-row="ZXCVBNM"></div>
+        </div>
+
+        <p class="keyboard-hint">Use o teclado da tela ou o teclado do computador.</p>
+      </section>
+
+      <section id="resultView" class="view" aria-labelledby="resultTitle">
+        <div class="result-card">
+          <div class="result-icon" id="resultIcon" aria-hidden="true">✦</div>
+          <span class="eyebrow">RESULTADO DE HOJE</span>
+          <h1 id="resultTitle">Boa!</h1>
+          <p id="resultMessage">Você encontrou a palavra.</p>
+
+          <div class="answer-box"><span>Palavra</span><strong id="answerWord">—</strong></div>
+
+          <div class="stats-grid">
+            <div><strong id="resultStreak">0</strong><span>streak</span></div>
+            <div><strong id="bestStreak">0</strong><span>melhor</span></div>
+            <div><strong id="totalWins">0</strong><span>vitórias</span></div>
+            <div><strong id="winRate">0%</strong><span>acertos</span></div>
+          </div>
+
+          <button class="primary-button" id="shareBtn">Compartilhar resultado</button>
+          <button class="secondary-button" id="backHomeBtn">Voltar ao início</button>
+          <p class="next-day" id="nextDayText">Novo desafio amanhã.</p>
+        </div>
+      </section>
+
+      <dialog id="statsDialog" class="stats-dialog">
+        <form method="dialog">
+          <div class="dialog-head">
+            <div><span class="eyebrow">SEU PROGRESSO</span><h2>Estatísticas</h2></div>
+            <button class="icon-button" aria-label="Fechar estatísticas">×</button>
+          </div>
+          <div class="stats-grid stats-grid--dialog">
+            <div><strong id="dialogStreak">0</strong><span>streak</span></div>
+            <div><strong id="dialogBest">0</strong><span>melhor</span></div>
+            <div><strong id="dialogGames">0</strong><span>partidas</span></div>
+            <div><strong id="dialogRate">0%</strong><span>acertos</span></div>
+          </div>
+          <p class="last-word">Última palavra resolvida: <strong id="dialogLastWord">—</strong></p>
+        </form>
+      </dialog>
+    </main>
+  </div>
+
+  <script src="rules.js"></script>
+  <script src="data/words.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
